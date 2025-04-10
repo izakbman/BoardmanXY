@@ -4,227 +4,648 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Case Study of Project 2</title>
-    <meta name="description" content="Case study page of Project" />
-
+    <title>GIS and Cartography Projects</title>
+    <meta name="description" content="GIS and Cartography" />
     <link rel="stylesheet" href="css/style.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial; }
+      .header { text-align: center; padding: 32px; }
+      
+      /* Enhanced Gallery Styles */
+      .gallery-container {
+        padding: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -16px;
+      }
+      
+      .column {
+        flex: 50%;
+        max-width: 50%;
+        padding: 16px;
+      }
+      
+      .gallery-item {
+        position: relative;
+        margin-bottom: 32px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+      }
+      
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      }
+      
+      .gallery-img {
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+      }
+      
+      .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 15px;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      
+      .gallery-item:hover .gallery-caption {
+        opacity: 1;
+      }
+      
+      .gallery-title {
+        margin: 0 0 8px 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      
+      .gallery-desc {
+        margin: 0;
+        font-size: 14px;
+      }
+      
+      @media (max-width: 800px) {
+        .column {
+          flex: 100%;
+          max-width: 100%;
+        }
+      }
+      
+      /* Enhanced Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgba(0,0,0,0.9);
+      }
+      
+      .modal-content {
+        position: relative;
+        margin: auto;
+        display: block;
+        max-height: 90vh;
+        max-width: 90vw;
+        cursor: move;
+        transition: transform 0.3s ease;
+      }
+      
+      .modal-controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.5);
+        border-radius: 30px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .zoom-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        margin: 0 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .zoom-btn:hover {
+        background: rgba(255,255,255,0.2);
+      }
+      
+      .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1010;
+      }
+      
+      .modal-caption {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 80px;
+        text-align: center;
+        color: white;
+        padding: 15px;
+        background: rgba(0,0,0,0.5);
+        max-width: 80%;
+        margin: 0 auto;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .modal:hover .modal-caption {
+        opacity: 1;
+      }
+      
+      .modal-navigation {
+        position: fixed;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 40px;
+        transform: translateY(-50%);
+        z-index: 1010;
+      }
+      
+      .nav-btn {
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-btn:hover {
+        background: rgba(255,255,255,0.3);
+      }
+    </style>
   </head>
   <body>
     <header class="header">
       <div class="header__content">
         <div class="header__logo-container">
           <div class="header__logo-img-cont">
-            <img
-              src="./assets/png/john-doe.png"
-              alt="Ram Maheshwari Logo Image"
-              class="header__logo-img"
-            />
+            <img src="./assets/png/profpic.png" alt="Izak Boardman Logo Image" class="header__logo-img" />
           </div>
-          <span class="header__logo-sub">John Doe</span>
+          <span class="header__logo-sub">Izak Boardman</span>
         </div>
         <div class="header__main">
           <ul class="header__links">
-            <li class="header__link-wrapper">
-              <a href="./index.html" class="header__link"> Home </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#about" class="header__link">About </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#projects" class="header__link">
-                Projects
-              </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#contact" class="header__link"> Contact </a>
-            </li>
+            <li class="header__link-wrapper"><a href="./index.html" class="header__link">Home</a></li>
+            <li class="header__link-wrapper"><a href="./index.html#about" class="header__link">About</a></li>
+            <li class="header__link-wrapper"><a href="./index.html#projects" class="header__link">Projects</a></li>
+            <li class="header__link-wrapper"><a href="./index.html#res" class="header__link">Contact</a></li>
           </ul>
           <div class="header__main-ham-menu-cont">
-            <img
-              src="./assets/svg/ham-menu.svg"
-              alt="hamburger menu"
-              class="header__main-ham-menu"
-            />
-            <img
-              src="./assets/svg/ham-menu-close.svg"
-              alt="hamburger menu close"
-              class="header__main-ham-menu-close d-none"
-            />
+            <img src="./assets/svg/ham-menu.svg" alt="hamburger menu" class="header__main-ham-menu" />
+            <img src="./assets/svg/ham-menu-close.svg" alt="hamburger menu close" class="header__main-ham-menu-close d-none" />
           </div>
         </div>
       </div>
       <div class="header__sm-menu">
         <div class="header__sm-menu-content">
           <ul class="header__sm-menu-links">
-            <li class="header__sm-menu-link">
-              <a href="./index.html"> Home </a>
-            </li>
-
-            <li class="header__sm-menu-link">
-              <a href="./index.html#about"> About </a>
-            </li>
-
-            <li class="header__sm-menu-link">
-              <a href="./index.html#projects"> Projects </a>
-            </li>
-
-            <li class="header__sm-menu-link">
-              <a href="./index.html#contact"> Contact </a>
-            </li>
+            <li class="header__sm-menu-link"><a href="./index.html">Home</a></li>
+            <li class="header__sm-menu-link"><a href="./index.html#about">About</a></li>
+            <li class="header__sm-menu-link"><a href="./index.html#projects">Projects</a></li>
+            <li class="header__sm-menu-link"><a href="./index.html#res">Resume</a></li>
           </ul>
         </div>
       </div>
     </header>
+
     <section class="project-cs-hero">
       <div class="project-cs-hero__content">
-        <h1 class="heading-primary">Project 2</h1>
+        <h1 class="heading-primary">GIS and Cartography Projects</h1>
         <div class="project-cs-hero__info">
           <p class="text-primary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            in numquam incidunt earum quaerat cum fuga, atque similique natus
-            nobis sit.
+            These projects showcase my skills in Geographic Information Systems (GIS) and cartography, featuring custom maps, spatial analysis, and geospatial data visualization.
           </p>
         </div>
         <div class="project-cs-hero__cta">
-          <a href="#" class="btn btn--bg" target="_blank">Live Link</a>
+          <a href="https://github.com/izakbman/gis-portfolio" class="btn btn--bg" target="_blank">View on GitHub</a>
         </div>
       </div>
     </section>
+
     <section class="project-details">
       <div class="main-container">
         <div class="project-details__content">
-          <div class="project-details__showcase-img-cont">
-            <img
-              src="./assets/jpeg/project-mockup-example.jpeg"
-              alt="Project Image"
-              class="project-details__showcase-img"
-            />
-          </div>
           <div class="project-details__content-main">
             <div class="project-details__desc">
               <h3 class="project-details__content-title">Project Overview</h3>
               <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Neque alias tenetur minus quaerat
-                aliquid, aut provident blanditiis, deleniti aspernatur ipsam
-                eaque veniam voluptatem corporis vitae mollitia laborum corrupti
-                ullam rem?
+                My GIS and cartography portfolio showcases my expertise in creating informative, accurate, and visually appealing maps that communicate complex spatial data effectively. Each project demonstrates different aspects of geospatial analysis, from terrain modeling to demographic visualization.
               </p>
               <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem?
+                The maps below represent different techniques and tools within the field of GIS. They combine technical precision with cartographic design principles to create maps that are both informative and visually engaging. Click on each map preview to view a zoomable version or the button for the full PDF.
               </p>
-            </div>
-            <div class="project-details__tools-used">
-              <h3 class="project-details__content-title">Tools Used</h3>
-              <div class="skills">
-                <div class="skills__skill">HTML</div>
-                <div class="skills__skill">CSS</div>
-                <div class="skills__skill">JavaScript</div>
-                <div class="skills__skill">React</div>
-                <div class="skills__skill">SASS</div>
-                <div class="skills__skill">GIT</div>
-                <div class="skills__skill">Shopify</div>
-                <div class="skills__skill">Wordpress</div>
-                <div class="skills__skill">Google ADS</div>
-                <div class="skills__skill">Facebook Ads</div>
-                <div class="skills__skill">Android</div>
-                <div class="skills__skill">IOS</div>
+              
+              <!-- Enhanced Gallery Section -->
+              <div class="gallery-container">
+                <div class="row">
+                  <div class="column">
+                    <div class="gallery-item">
+                      <img src="./assets/jpeg/Matterhorn.jpeg" class="gallery-img" alt="Matterhorn Terrain Model" data-id="1" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">Matterhorn Terrain Model & Story Map</h4>
+                        <p class="gallery-desc">3D terrain model of the iconic Matterhorn peak created using elevation data and advanced rendering techniques.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                      <img src="./assets/jpeg/PortlandHistorical.jpeg" class="gallery-img" alt="Historical Portland Map" data-id="2" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">Historical Map - Portland</h4>
+                        <p class="gallery-desc">Recreation of Portland's historical geography using archival data and modern GIS techniques.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="column">
+                    <div class="gallery-item">
+                      <img src="./assets/jpeg/chroepleth.jpeg" class="gallery-img" alt="Urban Transit Analysis" data-id="3" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">Native Population Analysis - Oregon</h4>
+                        <p class="gallery-desc">Spatial analysis of public transportation routes and accessibility in an urban environment.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                      <img src="./assets/jpeg/3dlayout.jpeg" class="gallery-img" alt="Topographic Survey" data-id="4" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">3D Terrain Representation - Snowmass Watershed</h4>
+                        <p class="gallery-desc">Detailed topographic mapping showing elevation contours, natural features, and land formations.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="column">
+                    <div class="gallery-item">
+                      <img src="./assets/images/map5-preview.jpg" class="gallery-img" alt="Land Use Classification" data-id="5" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">Land Use Classification</h4>
+                        <p class="gallery-desc">Visualization of different land use categories with color-coded zones and detailed classification.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                      <img src="./assets/jpeg/watershed.jpeg" class="gallery-img" alt="Watershed Analysis" data-id="6" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">Watershed Analysis</h4>
+                        <p class="gallery-desc">Hydrological modeling showing watershed boundaries, drainage patterns, and flow accumulation.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="column">
+                    <div class="gallery-item">
+                      <img src="./assets/jpeg/terrain-model.jpeg" class="gallery-img" alt="3D Terrain Visualization" data-id="7" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">3D Terrain Visualization</h4>
+                        <p class="gallery-desc">Advanced 3D terrain visualization showcasing elevation models with realistic rendering and shading.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                      <img src="./assets/jpeg/demographics.jpeg" class="gallery-img" alt="Demographic Analysis" data-id="8" />
+                      <div class="gallery-caption">
+                        <h4 class="gallery-title">Demographic Analysis</h4>
+                        <p class="gallery-desc">Statistical mapping of demographic data showing population distribution and socioeconomic factors.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="project-details__links">
-              <h3 class="project-details__content-title">See Live</h3>
-              <a
-                href="#"
-                class="btn btn--med btn--theme project-details__links-btn"
-                target="_blank"
-                >Live Link</a
-              >
-              <a
-                href="#"
-                class="btn btn--med btn--theme-inv project-details__links-btn"
-                target="_blank"
-                >Code Link</a
-              >
+              <!-- End Enhanced Gallery Section -->
+              
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
     <footer class="main-footer">
       <div class="main-container">
         <div class="main-footer__upper">
           <div class="main-footer__row main-footer__row-1">
-            <h2 class="heading heading-sm main-footer__heading-sm">
-              <span>Social</span>
-            </h2>
+            <h2 class="heading heading-sm main-footer__heading-sm"><span>Social</span></h2>
             <div class="main-footer__social-cont">
               <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/linkedin-ico.png"
-                  alt="icon"
-                />
+                <img class="main-footer__icon" src="./assets/png/linkedin-ico.png" alt="icon" />
               </a>
               <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/github-ico.png"
-                  alt="icon"
-                />
+                <img class="main-footer__icon" src="./assets/png/github-ico.png" alt="icon" />
               </a>
               <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/twitter-ico.png"
-                  alt="icon"
-                />
+                <img class="main-footer__icon" src="./assets/png/twitter-ico.png" alt="icon" />
               </a>
               <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/yt-ico.png"
-                  alt="icon"
-                />
+                <img class="main-footer__icon" src="./assets/png/yt-ico.png" alt="icon" />
               </a>
               <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon main-footer__icon--mr-none"
-                  src="./assets/png/insta-ico.png"
-                  alt="icon"
-                />
+                <img class="main-footer__icon main-footer__icon--mr-none" src="./assets/png/insta-ico.png" alt="icon" />
               </a>
             </div>
           </div>
           <div class="main-footer__row main-footer__row-2">
-            <h4 class="heading heading-sm text-lt">John Doe</h4>
-            <p class="main-footer__short-desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit facilis
-              tempora explicabo quae quod deserunt
-            </p>
+            <h4 class="heading heading-sm text-lt">Izak Boardman</h4>
+            <p class="main-footer__short-desc">GIS Specialist and Cartographer with expertise in spatial analysis, map design, and geospatial development.</p>
           </div>
         </div>
-
-        <div class="main-footer__lower">
-          &copy; Copyright 2021. Made by
-          <a rel="noreferrer" target="_blank" href="https://rammaheshwari.com"
-            >Ram Maheshwari</a
-          >
-        </div>
+        <div class="main-footer__lower">&copy; Copyright 2025. All rights reserved.</div>
       </div>
     </footer>
-    <script src="./index.js"></script>
+
+    <!-- Enhanced Modal -->
+    <div id="imageModal" class="modal">
+      <span class="modal-close">&times;</span>
+      <div class="modal-navigation">
+        <button class="nav-btn prev-btn">&lt;</button>
+        <button class="nav-btn next-btn">&gt;</button>
+      </div>
+      <img class="modal-content" id="zoomedImage" alt="Enlarged map" />
+      <div class="modal-caption" id="modalCaption"></div>
+      <div class="modal-controls">
+        <button class="zoom-btn" id="zoomOut">-</button>
+        <button class="zoom-btn" id="resetZoom">⟲</button>
+        <button class="zoom-btn" id="zoomIn">+</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('imageModal');
+        const zoomedImage = document.getElementById('zoomedImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeBtn = document.querySelector('.modal-close');
+        const galleryItems = document.querySelectorAll('.gallery-img');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const zoomInBtn = document.getElementById('zoomIn');
+        const zoomOutBtn = document.getElementById('zoomOut');
+        const resetZoomBtn = document.getElementById('resetZoom');
+        
+        let currentIndex = 0;
+        let currentScale = 1;
+        let isDragging = false;
+        let startPos = { x: 0, y: 0 };
+        let currentPos = { x: 0, y: 0 };
+        
+        // Gallery data
+        const galleryData = [
+          {
+            id: 1,
+            src: './assets/jpeg/Matterhorn.jpeg',
+            title: 'Matterhorn Terrain Model & Story Map',
+            description: '3D terrain model of the iconic Matterhorn peak created using elevation data and advanced rendering techniques.'
+          },
+          {
+            id: 2,
+            src: './assets/jpeg/PortlandHistorical.jpeg',
+            title: 'Historical Map - Portland',
+            description: 'Recreation of Portland\'s historical geography using archival data and modern GIS techniques.'
+          },
+          {
+            id: 3,
+            src: './assets/jpeg/chroepleth.jpeg',
+            title: 'Matterhorn Terrain Model & Story Map',
+            description: 'Spatial analysis of public transportation routes and accessibility in an urban environment.'
+          },
+          {
+            id: 4,
+            src: './assets/jpeg/3dlayout.jpeg',
+            title: '3D Terrain Representation - Snowmass Watershed',
+            description: 'Detailed topographic mapping showing elevation contours, natural features, and land formations.'
+          },
+          {
+            id: 5,
+            src: './assets/images/map5-preview.jpg',
+            title: 'Land Use Classification',
+            description: 'Visualization of different land use categories with color-coded zones and detailed classification.'
+          },
+          {
+            id: 6,
+            src: './assets/jpeg/watershed.jpeg',
+            title: 'Watershed Analysis',
+            description: 'Hydrological modeling showing watershed boundaries, drainage patterns, and flow accumulation.'
+          },
+          {
+            id: 7,
+            src: './assets/jpeg/terrain-model.jpeg',
+            title: '3D Terrain Visualization',
+            description: 'Advanced 3D terrain visualization showcasing elevation models with realistic rendering and shading.'
+          },
+          {
+            id: 8,
+            src: './assets/jpeg/demographics.jpeg',
+            title: 'Demographic Analysis',
+            description: 'Statistical mapping of demographic data showing population distribution and socioeconomic factors.'
+          }
+        ];
+        
+        // Open modal
+        galleryItems.forEach((img, index) => {
+          img.addEventListener('click', function() {
+            const dataId = parseInt(this.getAttribute('data-id'));
+            currentIndex = galleryData.findIndex(item => item.id === dataId);
+            openModal(currentIndex);
+          });
+        });
+        
+        function openModal(index) {
+          modal.style.display = 'block';
+          currentIndex = index;
+          updateModalImage();
+          document.body.style.overflow = 'hidden';
+        }
+        
+        function updateModalImage() {
+          resetZoom();
+          const imageData = galleryData[currentIndex];
+          zoomedImage.src = imageData.src;
+          modalCaption.innerHTML = `<h3>${imageData.title}</h3><p>${imageData.description}</p>`;
+        }
+        
+        // Close modal
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+        
+        function closeModal() {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          resetZoom();
+        }
+        
+        // Navigation
+        prevBtn.addEventListener('click', function() {
+          currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+          updateModalImage();
+        });
+        
+        nextBtn.addEventListener('click', function() {
+          currentIndex = (currentIndex + 1) % galleryData.length;
+          updateModalImage();
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          if (modal.style.display === 'block') {
+            if (e.key === 'ArrowLeft') {
+              currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+              updateModalImage();
+            } else if (e.key === 'ArrowRight') {
+              currentIndex = (currentIndex + 1) % galleryData.length;
+              updateModalImage();
+            } else if (e.key === 'Escape') {
+              closeModal();
+            }
+          }
+        });
+        
+        // Zoom controls
+        function updateZoom() {
+          zoomedImage.style.transform = `scale(${currentScale}) translate(${currentPos.x}px, ${currentPos.y}px)`;
+        }
+        
+        function resetZoom() {
+          currentScale = 1;
+          currentPos = { x: 0, y: 0 };
+          updateZoom();
+        }
+        
+        zoomInBtn.addEventListener('click', function() {
+          currentScale += 0.25;
+          if (currentScale > 4) currentScale = 4;
+          updateZoom();
+        });
+        
+        zoomOutBtn.addEventListener('click', function() {
+          currentScale -= 0.25;
+          if (currentScale < 0.5) currentScale = 0.5;
+          updateZoom();
+        });
+        
+        resetZoomBtn.addEventListener('click', resetZoom);
+        
+        // Mouse wheel zoom
+        zoomedImage.addEventListener('wheel', function(e) {
+          e.preventDefault();
+          if (e.deltaY < 0) {
+            currentScale += 0.1;
+            if (currentScale > 4) currentScale = 4;
+          } else {
+            currentScale -= 0.1;
+            if (currentScale < 0.5) currentScale = 0.5;
+          }
+          updateZoom();
+        });
+        
+        // Drag to pan
+        zoomedImage.addEventListener('mousedown', function(e) {
+          if (currentScale > 1) {
+            isDragging = true;
+            startPos = {
+              x: e.clientX - currentPos.x,
+              y: e.clientY - currentPos.y
+            };
+            zoomedImage.style.cursor = 'grabbing';
+          }
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+          if (isDragging) {
+            currentPos = {
+              x: e.clientX - startPos.x,
+              y: e.clientY - startPos.y
+            };
+            updateZoom();
+          }
+        });
+        
+        document.addEventListener('mouseup', function() {
+          isDragging = false;
+          zoomedImage.style.cursor = 'grab';
+        });
+        
+        // Mobile touch support
+        let touchStartX, touchStartY;
+        
+        zoomedImage.addEventListener('touchstart', function(e) {
+          if (e.touches.length === 1) {
+            e.preventDefault();
+            isDragging = true;
+            touchStartX = e.touches[0].clientX - currentPos.x;
+            touchStartY = e.touches[0].clientY - currentPos.y;
+          }
+        });
+        
+        zoomedImage.addEventListener('touchmove', function(e) {
+          if (isDragging && e.touches.length === 1) {
+            e.preventDefault();
+            currentPos = {
+              x: e.touches[0].clientX - touchStartX,
+              y: e.touches[0].clientY - touchStartY
+            };
+            updateZoom();
+          }
+        });
+        
+        zoomedImage.addEventListener('touchend', function() {
+          isDragging = false;
+        });
+        
+        // Double tap to zoom (mobile)
+        let lastTap = 0;
+        zoomedImage.addEventListener('touchend', function(e) {
+          const currentTime = new Date().getTime();
+          const tapLength = currentTime - lastTap;
+          if (tapLength < 300 && tapLength > 0) {
+            // Double tap detected
+            if (currentScale === 1) {
+              currentScale = 2;
+            } else {
+              resetZoom();
+            }
+            updateZoom();
+            e.preventDefault();
+          }
+          lastTap = currentTime;
+        });
+      });
+    </script>
+
   </body>
 </html>
