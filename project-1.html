@@ -63,33 +63,49 @@
             <div class="projects__header">
               <h4 class="projects__title">S2TP Automatic Speech Recognition (ASR)</h4>
             </div>
-            <div class="projects__content">
+            <div class="projects__content-1">
               <p class="projects__desc">
                 This project explores Automatic Speech Recognition (ASR) technology with a personal focus on its potential impact for the deaf community. I utilized the LibriSpeech dataset, which contains over 1,000 hours of English speech, to develop a Connectionist Temporal Classification (CTC)-based model. The model was trained to transcribe audio into text by predicting character sequences, addressing challenges like variable speech rates and background noise. I also conducted a comparative analysis with Meta's Wav2Vec model, a state-of-the-art self-supervised learning approach, to benchmark performance. Despite encountering issues with model convergence and accuracy (achieving a word error rate of approximately 25%), this project provided deep insights into the complexities of ASR systems, including the need for robust preprocessing, large-scale data, and computational resources. Future improvements could involve fine-tuning with domain-specific data or exploring hybrid architectures.
               </p>
-              <a href="https://github.com/izakbman/S2TP" class="projects__link" target="_blank">View on GitHub</a>
+              <a href="https://github.com/izakbman/S2TP" class="btn btn--med btn--theme" target="_blank">View on GitHub</a>
             </div>
           </div>
           <div class="projects__category">
             <div class="projects__header">
-              <h4 class="projects__title">Sentiment Analysis for Movie Reviews</h4>
+              <h4 class="projects__title">NFL 2019 Big Data Bowl Multi Model Analysis</h4>
             </div>
-            <div class="projects__content">
+            <div class="projects__content-1">
               <p class="projects__desc">
-                This project implements natural language processing (NLP) techniques to classify sentiment in a dataset of 50,000 IMDB movie reviews. I began with data preprocessing steps, including tokenization, stop-word removal, and lemmatization, to prepare the text for modeling. Two approaches were compared: a Long Short-Term Memory (LSTM) network, which captures sequential dependencies in text, and a BERT transformer, leveraging contextual embeddings. The LSTM model was built using PyTorch with an embedding layer, bidirectional LSTM, and a dense output layer, achieving an accuracy of 89%. The BERT model, fine-tuned using Hugging Face's Transformers library, outperformed it with a 93% accuracy, thanks to its ability to understand bidirectional context. Performance analysis included confusion matrices, precision-recall curves, and error inspection, revealing BERT's strength with nuanced reviews. This project highlighted the trade-offs between model complexity, training time, and predictive power in NLP tasks.
+                This project was developed off of the NFL Big Data Bowl, a Kaggle competition leveraging NFL Next Gen Stats. Using data from the 2019 competition (covering games from 2017–2019), the goal was to predict play outcomes—specifically, the number of yards gained or lost—based solely on pre-snap features. The prediction task was framed as a regression problem with a target range of -100 to 100 yards. The dataset was split into training (80%), validation (10%), and test (10%) sets. Neural network models were trained using PyTorch with batched data loaders and controlled random seeds for reproducibility. Models utilizing tree methods as well as SVM have been implimented as well. 
               </p>
-              <a href="https://github.com/izakbman/sentiment-analysis" class="projects__link" target="_blank">View on GitHub</a>
+              <a href="https://github.com/izakbman/NFLMLP/tree/main" class="btn btn--med btn--theme" target="_blank">View on GitHub</a>
             </div>
           </div>
           <div class="projects__category">
             <div class="projects__header">
-              <h4 class="projects__title">Housing Price Prediction Model</h4>
+              <h4 class="projects__title">UFC EDA and Winner Prediction</h4>
             </div>
-            <div class="projects__content">
+            <div class="projects__content-1">
               <p class="projects__desc">
-                This project applies machine learning to predict housing prices using the California housing dataset, which includes features like median income, house age, and location coordinates. I performed extensive feature engineering, such as creating interaction terms (e.g., income × rooms) and normalizing data to handle scale differences. Three regression models were compared: Linear Regression as a baseline, Random Forest for non-linear relationships, and Gradient Boosting (using XGBoost) for enhanced predictive power. I implemented 5-fold cross-validation to ensure robust evaluation, with metrics including R², mean absolute error (MAE), and root mean squared error (RMSE). The Gradient Boosting model excelled, achieving an R² of 0.89 and an MAE of $18,500 on the test set, outperforming Linear Regression (R² 0.65) and Random Forest (R² 0.82). Detailed analysis revealed the importance of location and income features, with potential improvements including hyperparameter tuning or incorporating external data like interest rates.
+                In this project, I explored the dynamics of UFC fights using detailed bout-level data to uncover patterns and predict match outcomes. I engineered a rich set of features—including fighter performance stats, physical attributes, and betting odds—and applied logistic regression to classify winners. I also used PCA for dimensionality reduction and insightful visualizations.
+
+Key highlights:
+
+Cleaned and transformed complex sports data from Kaggle’s Ultimate UFC Dataset
+
+Built predictive models using logistic regression and validated them with cross-validation
+
+Analyzed fight trends and performance metrics across weight classes and genders
+
+Visualized decision boundaries and key fighter statistics with Seaborn and Matplotlib
+
+Delivered actionable insights for betting and sports analysis audiences
+
+This project demonstrates my ability to work with real-world sports data, engineer meaningful features, and build interpretable models—all while communicating findings through data storytelling.
+
+
               </p>
-              <a href="https://github.com/izakbman/housing-prediction" class="projects__link" target="_blank">View on GitHub</a>
+              <a href="https://github.com/izakbman/UFCMLP/tree/main" class="btn btn--med btn--theme" target="_blank">View on GitHub</a>
             </div>
           </div>
         </div>

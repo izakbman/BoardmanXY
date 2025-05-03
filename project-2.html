@@ -14,8 +14,14 @@
     <style>
       * { box-sizing: border-box; }
       body { margin: 0; font-family: Arial; }
-      .header { text-align: center; padding: 32px; }
-      
+      .header {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        background: #212A31;
+        box-shadow: 0 10px 100px rgba(0, 0, 0, 0.5);
+      }
+
       /* Enhanced Gallery Styles */
       .gallery-container {
         padding: 20px;
@@ -241,7 +247,7 @@
       </div>
     </header>
 
-    <section class="project-cs-hero">
+    <section class="project-cs-hero-1">
       <div class="project-cs-hero__content">
         <h1 class="heading-primary">GIS and Cartography Projects</h1>
         <div class="project-cs-hero__info">
@@ -260,9 +266,9 @@
         <div class="project-details__content">
           <div class="project-details__content-main">
             <div class="project-details__desc">
-              <h3 class="project-details__content-title">Project Overview</h3>
+              <h3 class="project-details__content-title">Overview</h3>
               <p class="project-details__desc-para">
-                My GIS and cartography portfolio showcases my expertise in creating informative, accurate, and visually appealing maps that communicate complex spatial data effectively. Each project demonstrates different aspects of geospatial analysis, from terrain modeling to demographic visualization.
+                My GIS and cartography portfolio showcases my knowlage in creating informative, accurate, and visually appealing maps that communicate spatial data effectively through maps and infographics. Each project demonstrates unique aspects of geospatial analysis, from terrain modeling to demographic visualization.
               </p>
               <p class="project-details__desc-para">
                 The maps below represent different techniques and tools within the field of GIS. They combine technical precision with cartographic design principles to create maps that are both informative and visually engaging. Click on each map preview to view a zoomable version or the button for the full PDF.
@@ -309,39 +315,7 @@
                 </div>
                 
                 <div class="row">
-                  <div class="column">
-                    <div class="gallery-item">
-                      <img src="./assets/images/map5-preview.jpg" class="gallery-img" alt="Land Use Classification" data-id="5" />
-                      <div class="gallery-caption">
-                        <h4 class="gallery-title">Land Use Classification</h4>
-                        <p class="gallery-desc">Visualization of different land use categories with color-coded zones and detailed classification.</p>
-                      </div>
-                    </div>
-                    
-                    <div class="gallery-item">
-                      <img src="./assets/jpeg/watershed.jpeg" class="gallery-img" alt="Watershed Analysis" data-id="6" />
-                      <div class="gallery-caption">
-                        <h4 class="gallery-title">Watershed Analysis</h4>
-                        <p class="gallery-desc">Hydrological modeling showing watershed boundaries, drainage patterns, and flow accumulation.</p>
-                      </div>
-                    </div>
                   </div>
-                  
-                  <div class="column">
-                    <div class="gallery-item">
-                      <img src="./assets/jpeg/terrain-model.jpeg" class="gallery-img" alt="3D Terrain Visualization" data-id="7" />
-                      <div class="gallery-caption">
-                        <h4 class="gallery-title">3D Terrain Visualization</h4>
-                        <p class="gallery-desc">Advanced 3D terrain visualization showcasing elevation models with realistic rendering and shading.</p>
-                      </div>
-                    </div>
-                    
-                    <div class="gallery-item">
-                      <img src="./assets/jpeg/demographics.jpeg" class="gallery-img" alt="Demographic Analysis" data-id="8" />
-                      <div class="gallery-caption">
-                        <h4 class="gallery-title">Demographic Analysis</h4>
-                        <p class="gallery-desc">Statistical mapping of demographic data showing population distribution and socioeconomic factors.</p>
-                      </div>
                     </div>
                   </div>
                 </div>

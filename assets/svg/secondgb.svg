@@ -1,0 +1,279 @@
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Subtle gradient overlay -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#304050" stop-opacity="0.05" />
+      <stop offset="50%" stop-color="#405060" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#304050" stop-opacity="0.05" />
+    </linearGradient>
+    
+    <!-- Glow effect for certain elements -->
+    <filter id="mapGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <!-- Pattern for topographic elements -->
+    <pattern id="topoMap" patternUnits="userSpaceOnUse" width="1000" height="1000">
+      <!-- Contour lines with increasing elevations -->
+      <g opacity="0.15">
+        <!-- Highest peak contour lines -->
+        <path d="M400,200 C430,180 470,170 500,180 C530,190 570,180 600,170 C620,165 640,167 660,170 C680,173 700,168 720,170 C740,172 760,168 780,170 C800,172 820,168 840,165 C860,162 880,167 900,170 C920,173 940,169 960,168 C980,167 990,169 1000,170 L1000,100 C980,102 960,98 940,100 C920,102 900,97 880,95 C860,93 840,98 820,100 C800,102 780,98 760,95 C740,92 720,97 700,100 C680,102 660,98 640,95 C620,92 600,97 580,100 C560,102 540,98 520,95 C500,92 480,97 460,100 C440,102 420,98 400,100 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <path d="M380,240 C410,220 450,210 480,220 C510,230 550,220 580,210 C600,205 620,207 640,210 C660,213 680,208 700,210 C720,212 740,208 760,210 C780,212 800,208 820,205 C840,202 860,207 880,210 C900,213 920,209 940,208 C960,207 980,209 1000,210 L1000,140 C980,142 960,138 940,140 C920,142 900,137 880,135 C860,133 840,138 820,140 C800,142 780,138 760,135 C740,132 720,137 700,140 C680,142 660,138 640,135 C620,132 600,137 580,140 C560,142 540,138 520,135 C500,132 480,137 460,140 C440,142 420,138 400,140 C390,142 385,140 380,140 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <path d="M360,280 C390,260 430,250 460,260 C490,270 530,260 560,250 C580,245 600,247 620,250 C640,253 660,248 680,250 C700,252 720,248 740,250 C760,252 780,248 800,245 C820,242 840,247 860,250 C880,253 900,249 920,248 C940,247 960,249 980,250 C990,251 995,249 1000,250 L1000,180 C980,182 960,178 940,180 C920,182 900,177 880,175 C860,173 840,178 820,180 C800,182 780,178 760,175 C740,172 720,177 700,180 C680,182 660,178 640,175 C620,172 600,177 580,180 C560,182 540,178 520,175 C500,172 480,177 460,180 C440,182 420,178 400,180 C380,182 370,178 360,180 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <path d="M340,320 C370,300 410,290 440,300 C470,310 510,300 540,290 C560,285 580,287 600,290 C620,293 640,288 660,290 C680,292 700,288 720,290 C740,292 760,288 780,285 C800,282 820,287 840,290 C860,293 880,289 900,288 C920,287 940,289 960,290 C980,291 990,289 1000,290 L1000,220 C980,222 960,218 940,220 C920,222 900,217 880,215 C860,213 840,218 820,220 C800,222 780,218 760,215 C740,212 720,217 700,220 C680,222 660,218 640,215 C620,212 600,217 580,220 C560,222 540,218 520,215 C500,212 480,217 460,220 C440,222 420,218 400,220 C370,223 355,219 340,220 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <path d="M320,360 C350,340 390,330 420,340 C450,350 490,340 520,330 C540,325 560,327 580,330 C600,333 620,328 640,330 C660,332 680,328 700,330 C720,332 740,328 760,325 C780,322 800,327 820,330 C840,333 860,329 880,328 C900,327 920,329 940,330 C960,331 980,329 1000,330 L1000,260 C980,262 960,258 940,260 C920,262 900,257 880,255 C860,253 840,258 820,260 C800,262 780,258 760,255 C740,252 720,257 700,260 C680,262 660,258 640,255 C620,252 600,257 580,260 C560,262 540,258 520,255 C500,252 480,257 460,260 C440,262 420,258 400,260 C360,264 340,258 320,260 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <!-- Lower elevation contours -->
+        <path d="M100,500 C150,490 200,510 250,500 C300,490 350,510 400,500 C450,490 500,510 550,500 C600,490 650,510 700,500 C750,490 800,510 850,500 C900,490 950,510 1000,500 L1000,440 C950,450 900,430 850,440 C800,450 750,430 700,440 C650,450 600,430 550,440 C500,450 450,430 400,440 C350,450 300,430 250,440 C200,450 150,430 100,440 C50,450 0,430 0,440 L0,500 C33,490 67,510 100,500 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <path d="M100,560 C150,550 200,570 250,560 C300,550 350,570 400,560 C450,550 500,570 550,560 C600,550 650,570 700,560 C750,550 800,570 850,560 C900,550 950,570 1000,560 L1000,500 C950,510 900,490 850,500 C800,510 750,490 700,500 C650,510 600,490 550,500 C500,510 450,490 400,500 C350,510 300,490 250,500 C200,510 150,490 100,500 C50,510 0,490 0,500 L0,560 C33,550 67,570 100,560 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <path d="M100,620 C150,610 200,630 250,620 C300,610 350,630 400,620 C450,610 500,630 550,620 C600,610 650,630 700,620 C750,610 800,630 850,620 C900,610 950,630 1000,620 L1000,560 C950,570 900,550 850,560 C800,570 750,550 700,560 C650,570 600,550 550,560 C500,570 450,550 400,560 C350,570 300,550 250,560 C200,570 150,550 100,560 C50,570 0,550 0,560 L0,620 C33,610 67,630 100,620 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <path d="M100,680 C150,670 200,690 250,680 C300,670 350,690 400,680 C450,670 500,690 550,680 C600,670 650,690 700,680 C750,670 800,690 850,680 C900,670 950,690 1000,680 L1000,620 C950,630 900,610 850,620 C800,630 750,610 700,620 C650,630 600,610 550,620 C500,630 450,610 400,620 C350,630 300,610 250,620 C200,630 150,610 100,620 C50,630 0,610 0,620 L0,680 C33,670 67,690 100,680 Z" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        
+        <!-- Basin contours -->
+        <ellipse cx="200" cy="350" rx="120" ry="100" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        <ellipse cx="200" cy="350" rx="100" ry="80" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        <ellipse cx="200" cy="350" rx="80" ry="60" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        <ellipse cx="200" cy="350" rx="60" ry="40" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+        <ellipse cx="200" cy="350" rx="40" ry="20" fill="none" stroke="#d3d9d4" stroke-width="0.6" />
+      </g>
+      
+      <!-- Valley and ridge patterns -->
+      <g opacity="0.12">
+        <path d="M350,100 C360,150 330,200 340,250 C350,300 330,350 340,400 C350,450 330,500 340,550 C350,600 330,650 340,700" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M650,100 C660,150 630,200 640,250 C650,300 630,350 640,400 C650,450 630,500 640,550 C650,600 630,650 640,700" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M150,750 C200,740 250,760 300,750 C350,740 400,760 450,750 C500,740 550,760 600,750 C650,740 700,760 750,750 C800,740 850,760 900,750" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+      </g>
+    </pattern>
+    
+    <!-- Pattern for map elements -->
+    <pattern id="mapElements" patternUnits="userSpaceOnUse" width="1000" height="1000">
+      <!-- Coordinate grid -->
+      <g opacity="0.07">
+        <!-- Latitude lines -->
+        <line x1="0" y1="100" x2="1000" y2="100" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="200" x2="1000" y2="200" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="300" x2="1000" y2="300" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="400" x2="1000" y2="400" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="500" x2="1000" y2="500" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="600" x2="1000" y2="600" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="700" x2="1000" y2="700" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="800" x2="1000" y2="800" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="0" y1="900" x2="1000" y2="900" stroke="#d3d9d4" stroke-width="0.5" />
+        
+        <!-- Longitude lines -->
+        <line x1="100" y1="0" x2="100" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="200" y1="0" x2="200" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="300" y1="0" x2="300" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="400" y1="0" x2="400" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="500" y1="0" x2="500" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="600" y1="0" x2="600" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="700" y1="0" x2="700" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="800" y1="0" x2="800" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+        <line x1="900" y1="0" x2="900" y2="1000" stroke="#d3d9d4" stroke-width="0.5" />
+      </g>
+      
+      <!-- UTM grid ticks -->
+      <g opacity="0.15">
+        <!-- Horizontal ticks -->
+        <path d="M95,100 L105,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M195,100 L205,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M295,100 L305,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M395,100 L405,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M495,100 L505,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M595,100 L605,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M695,100 L705,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M795,100 L805,100" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M895,100 L905,100" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <path d="M95,300 L105,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M195,300 L205,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M295,300 L305,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M395,300 L405,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M495,300 L505,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M595,300 L605,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M695,300 L705,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M795,300 L805,300" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M895,300 L905,300" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <path d="M95,500 L105,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M195,500 L205,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M295,500 L305,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M395,500 L405,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M495,500 L505,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M595,500 L605,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M695,500 L705,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M795,500 L805,500" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M895,500 L905,500" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <path d="M95,700 L105,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M195,700 L205,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M295,700 L305,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M395,700 L405,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M495,700 L505,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M595,700 L605,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M695,700 L705,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M795,700 L805,700" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M895,700 L905,700" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <!-- Vertical ticks -->
+        <path d="M100,95 L100,105" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,195 L100,205" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,295 L100,305" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,395 L100,405" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,495 L100,505" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,595 L100,605" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,695 L100,705" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,795 L100,805" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M100,895 L100,905" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <path d="M300,95 L300,105" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,195 L300,205" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,295 L300,305" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,395 L300,405" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,495 L300,505" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,595 L300,605" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,695 L300,705" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,795 L300,805" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M300,895 L300,905" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <path d="M500,95 L500,105" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,195 L500,205" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,295 L500,305" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,395 L500,405" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,495 L500,505" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,595 L500,605" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,695 L500,705" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,795 L500,805" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M500,895 L500,905" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <path d="M700,95 L700,105" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,195 L700,205" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,295 L700,305" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,395 L700,405" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,495 L700,505" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,595 L700,605" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,695 L700,705" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,795 L700,805" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M700,895 L700,905" stroke="#d3d9d4" stroke-width="0.7" />
+        
+        <path d="M900,95 L900,105" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,195 L900,205" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,295 L900,305" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,395 L900,405" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,495 L900,505" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,595 L900,605" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,695 L900,705" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,795 L900,805" stroke="#d3d9d4" stroke-width="0.7" />
+        <path d="M900,895 L900,905" stroke="#d3d9d4" stroke-width="0.7" />
+      </g>
+      
+      <!-- Reference points and landmarks -->
+      <g opacity="0.2">
+        <!-- Major reference points -->
+        <circle cx="200" cy="200" r="3" fill="#d3d9d4" />
+        <circle cx="600" cy="200" r="3" fill="#d3d9d4" />
+        <circle cx="200" cy="600" r="3" fill="#d3d9d4" />
+        <circle cx="600" cy="600" r="3" fill="#d3d9d4" />
+        
+        <!-- Minor reference points -->
+        <circle cx="400" cy="400" r="2" fill="#d3d9d4" />
+        <circle cx="800" cy="400" r="2" fill="#d3d9d4" />
+        <circle cx="400" cy="800" r="2" fill="#d3d9d4" />
+        <circle cx="800" cy="800" r="2" fill="#d3d9d4" />
+        
+        <!-- Small markers -->
+        <circle cx="300" cy="300" r="1" fill="#d3d9d4" />
+        <circle cx="500" cy="300" r="1" fill="#d3d9d4" />
+        <circle cx="700" cy="300" r="1" fill="#d3d9d4" />
+        <circle cx="900" cy="300" r="1" fill="#d3d9d4" />
+        
+        <circle cx="300" cy="500" r="1" fill="#d3d9d4" />
+        <circle cx="500" cy="500" r="1" fill="#d3d9d4" />
+        <circle cx="700" cy="500" r="1" fill="#d3d9d4" />
+        <circle cx="900" cy="500" r="1" fill="#d3d9d4" />
+        
+        <circle cx="300" cy="700" r="1" fill="#d3d9d4" />
+        <circle cx="500" cy="700" r="1" fill="#d3d9d4" />
+        <circle cx="700" cy="700" r="1" fill="#d3d9d4" />
+        <circle cx="900" cy="700" r="1" fill="#d3d9d4" />
+        
+        <circle cx="300" cy="900" r="1" fill="#d3d9d4" />
+        <circle cx="500" cy="900" r="1" fill="#d3d9d4" />
+        <circle cx="700" cy="900" r="1" fill="#d3d9d4" />
+        <circle cx="900" cy="900" r="1" fill="#d3d9d4" />
+      </g>
+    </pattern>
+    
+    <!-- Pattern for map features -->
+    <pattern id="mapFeatures" patternUnits="userSpaceOnUse" width="1000" height="1000">
+      <!-- Rivers and water features -->
+      <g opacity="0.15">
+        <!-- Main river -->
+        <path d="M850,50 C830,100 860,150 840,200 C820,250 850,300 830,350 C810,400 840,450 820,500 C800,550 830,600 810,650 C790,700 820,750 800,800 C780,850 810,900 790,950" fill="none" stroke="#d3d9d4" stroke-width="1.5" />
+        
+        <!-- Tributaries -->
+        <path d="M850,150 C800,160 750,150 700,160" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M840,250 C790,260 740,250 690,260" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M830,350 C780,360 730,350 680,360" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M820,450 C770,460 720,450 670,460" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <!-- Continue Tributaries -->
+        <path d="M810,550 C760,560 710,550 660,560" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M800,650 C750,660 700,650 650,660" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M790,750 C740,760 690,750 640,760" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+        <path d="M780,850 C730,860 680,850 630,860" fill="none" stroke="#d3d9d4" stroke-width="0.8" />
+      </g>
+
+      <!-- Trails and Paths -->
+      <g opacity="0.12">
+        <!-- Main trail -->
+        <path d="M100,100 C150,150 200,200 250,250 C300,300 350,350 400,400 C450,450 500,500 550,550 C600,600 650,650 700,700" fill="none" stroke="#d3d9d4" stroke-width="1" stroke-dasharray="2,2" />
+        <!-- Secondary trails -->
+        <path d="M150,200 C200,250 250,300 300,350" fill="none" stroke="#d3d9d4" stroke-width="0.7" stroke-dasharray="2,2" />
+        <path d="M500,600 C550,650 600,700 650,750" fill="none" stroke="#d3d9d4" stroke-width="0.7" stroke-dasharray="2,2" />
+      </g>
+
+      <!-- Vegetation and Forests -->
+      <g opacity="0.1">
+        <!-- Forest patches -->
+        <path d="M250,400 C270,380 290,400 310,380 C330,360 350,380 370,360 C390,340 410,360 430,340 C450,320 470,340 490,320 C510,300 530,320 550,300" fill="none" stroke="#d3d9d4" stroke-width="0.5" />
+        <path d="M600,800 C620,780 640,800 660,780 C680,760 700,780 720,760 C740,740 760,760 780,740 C800,720 820,740 840,720" fill="none" stroke="#d3d9d4" stroke-width="0.5" />
+        <!-- Scattered trees -->
+        <circle cx="270" cy="420" r="2" fill="#d3d9d4" />
+        <circle cx="320" cy="400" r="2" fill="#d3d9d4" />
+        <circle cx="360" cy="380" r="2" fill="#d3d9d4" />
+        <circle cx="400" cy="360" r="2" fill="#d3d9d4" />
+        <circle cx="620" cy="820" r="2" fill="#d3d9d4" />
+        <circle cx="660" cy="800" r="2" fill="#d3d9d4" />
+        <circle cx="700" cy="780" r="2" fill="#d3d9d4" />
+      </g>
+
+      <!-- Settlements and Structures -->
+      <g opacity="0.2">
+        <!-- Small settlements -->
+        <rect x="180" y="580" width="8" height="8" fill="#d3d9d4" />
+        <rect x="580" y="180" width="8" height="8" fill="#d3d9d4" />
+        <!-- Individual structures -->
+        <rect x="300" y="650" width="6" height="6" fill="#d3d9d4" />
+        <rect x="650" y="300" width="6" height="6" fill="#d3d9d4" />
+      </g>
+    </pattern>
+  </defs>
+
+  <!-- Main map composition -->
+  <rect x="0" y="0" width="1000" height="1000" fill="#2b3640" />
+  <rect x="0" y="0" width="1000" height="1000" fill="url(#topoMap)" />
+  <rect x="0" y="0" width="1000" height="1000" fill="url(#mapElements)" />
+  <rect x="0" y="0" width="1000" height="1000" fill="url(#mapFeatures)" />
+  <rect x="0" y="0" width="1000" height="1000" fill="url(#bgGradient)" />
+
+  <!-- Highlighted peak with glow -->
+  <circle cx="500" cy="180" r="5" fill="#d3d9d4" filter="url(#mapGlow)" opacity="0.5" />
+</svg>
